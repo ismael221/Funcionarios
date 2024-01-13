@@ -2,6 +2,7 @@ package com.api.senac.service;
 
 import com.api.senac.data.FuncionarioEntity;
 import com.api.senac.data.FuncionarioRepository;
+import com.api.senac.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class FuncionarioService {
     }
 
     public FuncionarioEntity getFuncionarioId(Integer funcId){
-        return funcionarioRepository.findById(funcId).orElse(null);
+        return funcionarioRepository.findById(funcId).orElseThrow(()-> new ResourceNotFoundException("Funcionário não encontrado "+funcId));
     }
 
     public List<FuncionarioEntity> listarTodosFuncionarios(){

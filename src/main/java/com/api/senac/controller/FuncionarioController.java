@@ -2,6 +2,7 @@ package com.api.senac.controller;
 
 import com.api.senac.data.FuncionarioEntity;
 import com.api.senac.service.FuncionarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class FuncionarioController {
     }
 
     @PostMapping("/adicionar")
-    public ResponseEntity<FuncionarioEntity> addFuncionario(@RequestBody FuncionarioEntity func){
+    public ResponseEntity<FuncionarioEntity> addFuncionario(@Valid @RequestBody FuncionarioEntity func){
         var novoFuncionario = funcionarioService.criarFuncionario(func);
         return new ResponseEntity<>(novoFuncionario,HttpStatus.CREATED);
     }
