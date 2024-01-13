@@ -43,4 +43,12 @@ public class FuncionarioService {
         FuncionarioEntity func = getFuncionarioId(funcId);
         funcionarioRepository.deleteById(func.getId());
     }
+
+    public List<FuncionarioEntity> getFuncionarioPorNome(String nome){
+        return funcionarioRepository.findByNomeContaining(nome);
+    }
+
+    public List<FuncionarioEntity> getMaioresSalarios(){
+        return funcionarioRepository.findAllMaiorSalario();
+    }
 }
